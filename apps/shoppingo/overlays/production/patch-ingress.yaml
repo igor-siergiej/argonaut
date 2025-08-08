@@ -4,7 +4,7 @@ metadata:
   name: shoppingo-ingress
 spec:
   rules:
-    - host: staging.shoppingo.imapps.co.uk
+    - host: shoppingo.imapps.co.uk
       http:
         paths:
           - path: /api

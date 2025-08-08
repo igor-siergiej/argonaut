@@ -19,12 +19,3 @@ spec:
           image: 192.168.68.54:31834/shoppingo-shoppingo-web:latest
           ports:
             - containerPort: 80
-          env:
-            - name: VITE_API_URL
-              valueFrom:
-                secretKeyRef:
-                  name: web-secret
-                  key: VITE_API_URL
-          envFrom:
-            - configMapRef:
-                name: shoppingo-web-config

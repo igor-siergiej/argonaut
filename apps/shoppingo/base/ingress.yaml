@@ -6,11 +6,19 @@ metadata:
     app: shoppingo
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
     - host: shoppingo.imapps.co.uk
       http:
         paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: shoppingo-api
+                port:
+                  number: 4001
           - path: /
             pathType: Prefix
             backend:
