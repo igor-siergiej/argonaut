@@ -4,4 +4,6 @@ namespace: shoppingo-staging
 resources:
   - ../../base
 patchesStrategicMerge:
-  - patch-deployment.yaml
+  - patch-api-deployment.yaml
+  - patch-web-deployment.yaml
+  - patch-ingress.yaml

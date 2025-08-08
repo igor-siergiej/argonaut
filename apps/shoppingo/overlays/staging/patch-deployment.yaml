@@ -1,18 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shoppingo-api
-spec:
-  replicas: 1
-  template:
-    spec:
-      containers:
-        - name: shoppingo-api
-          image: 192.168.68.54:31834/shoppingo-shoppingo-api:latest
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: shoppingo-web
 spec:
   replicas: 1
@@ -21,3 +9,15 @@ spec:
       containers:
         - name: shoppingo-web
           image: 192.168.68.54:31834/shoppingo-shoppingo-web:latest
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingo-api
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: shoppingo-api
+          image: 192.168.68.54:31834/shoppingo-shoppingo-api:latest
