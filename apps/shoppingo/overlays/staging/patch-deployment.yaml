@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: shoppingo-api
-          image: ghcr.io/igor-siergiej/shoppingo:staging
+          image: 192.168.68.54:31834/shoppingo-shoppingo-api:latest
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -20,4 +20,4 @@ spec:
     spec:
       containers:
         - name: shoppingo-web
-          image: ghcr.io/igor-siergiej/shoppingo:staging
+          image: 192.168.68.54:31834/shoppingo-shoppingo-web:latest
