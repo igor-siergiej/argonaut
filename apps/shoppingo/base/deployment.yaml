@@ -23,7 +23,7 @@ spec:
             - configMapRef:
                 name: shoppingo-api-config
           env:
-            - name: MONGODB_URI
+            - name: CONNECTION_URI
               valueFrom:
                 secretKeyRef:
                   name: api-secret
