@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingo-mongodb
+  labels:
+    app: shoppingo-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shoppingo-mongodb
+  template:
+    metadata:
+      labels:
+        app: shoppingo-mongodb
+    spec:
+      containers:
+        - name: shoppingo-mongodb
+          image: mongodb/mongodb-community-server:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: shoppingo-mongodb-secret
+                  key: username
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: shoppingo-mongodb-secret
+                  key: password
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: shoppingo-mongodb-pvc

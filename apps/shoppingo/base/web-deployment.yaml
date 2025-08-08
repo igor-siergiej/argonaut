@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shoppingo-web
+  labels:
+    app: shoppingo-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shoppingo-web
+  template:
+    metadata:
+      labels:
+        app: shoppingo-web
+    spec:
+      containers:
+        - name: shoppingo-web
+          image: 192.168.68.54:31834/shoppingo-shoppingo-web:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_API_URL
+              value: "http://shoppingo-api:4001"
+          envFrom:
+            - configMapRef:
+                name: shoppingo-web-config

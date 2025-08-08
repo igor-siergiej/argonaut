@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: shoppingo-web
+  labels:
+    app: shoppingo-web
+spec:
+  selector:
+    app: shoppingo-web
+  ports:
+    - port: 80
+      targetPort: 80
+      name: web
+  type: ClusterIP

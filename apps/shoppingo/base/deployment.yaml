@@ -1,24 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shoppingo
+  name: shoppingo-api
   labels:
-    app: shoppingo
+    app: shoppingo-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shoppingo
+      app: shoppingo-api
   template:
     metadata:
       labels:
-        app: shoppingo
+        app: shoppingo-api
     spec:
       containers:
-        - name: shoppingo
-          image: ghcr.io/igor-siergiej/shoppingo:latest
+        - name: shoppingo-api
+          image: 192.168.68.54:31834/shoppingo-shoppingo-api:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 4001
           envFrom:
             - configMapRef:
-                name: shoppingo-config
+                name: shoppingo-api-config
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: shoppingo-api-secret
+                  key: DATABASE_URL
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: shoppingo-api-secret
+                  key: PORT
