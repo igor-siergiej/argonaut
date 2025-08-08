@@ -33,3 +33,8 @@ spec:
                 secretKeyRef:
                   name: api-secret
                   key: PORT
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret
+                  key: DATABASE_NAME
