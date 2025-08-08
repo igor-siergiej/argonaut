@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: shoppingo-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/igor-siergiej/Shoppingo'
+    targetRevision: HEAD
+    path: 'k8s/production/shoppingo'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: shoppingo-production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
