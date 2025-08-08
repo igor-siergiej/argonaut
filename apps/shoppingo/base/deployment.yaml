@@ -26,10 +26,10 @@ spec:
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
-                  name: shoppingo-api-secret
-                  key: DATABASE_URL
+                  name: api-secret
+                  key: CONNECTION_URI
             - name: PORT
               valueFrom:
                 secretKeyRef:
-                  name: shoppingo-api-secret
+                  name: api-secret
                   key: PORT

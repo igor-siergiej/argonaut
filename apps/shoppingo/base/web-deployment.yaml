@@ -21,7 +21,10 @@ spec:
             - containerPort: 80
           env:
             - name: VITE_API_URL
-              value: "http://shoppingo-api:4001"
+              valueFrom:
+                secretKeyRef:
+                  name: web-secret
+                  key: VITE_API_URL
           envFrom:
             - configMapRef:
                 name: shoppingo-web-config

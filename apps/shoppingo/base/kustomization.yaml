@@ -10,7 +10,7 @@ resources:
   - web-deployment.yaml
   - web-service.yaml
   - configmaps.yaml
-  - secrets.yaml
-  - api-secrets.yaml
-  - web-secrets.yaml
+  - mongodb-sealedsecret.yaml
+  - api-sealedsecret.yaml
+  - web-sealedsecret.yaml
   - ingress.yaml

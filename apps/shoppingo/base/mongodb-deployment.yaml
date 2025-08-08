@@ -26,12 +26,12 @@ spec:
             - name: MONGODB_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: shoppingo-mongodb-secret
+                  name: mongodb-secret
                   key: username
             - name: MONGODB_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: shoppingo-mongodb-secret
+                  name: mongodb-secret
                   key: password
       volumes:
         - name: mongodb-data
