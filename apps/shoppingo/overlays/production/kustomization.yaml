@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: shoppingo-production
 resources:
   - ../../base
+  - api-sealedsecret.yaml
+  - mongodb-sealedsecret.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml
