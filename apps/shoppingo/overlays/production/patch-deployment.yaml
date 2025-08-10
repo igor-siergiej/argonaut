@@ -3,21 +3,21 @@ kind: Deployment
 metadata:
   name: shoppingo-api
 spec:
-  replicas: 2
+  replicas: 1
   template:
     spec:
       containers:
         - name: shoppingo-api
-          image: ghcr.io/igor-siergiej/shoppingo:prod
+          image: 192.168.68.54:31834/shoppingo-api:0.1.1
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shoppingo-web
 spec:
-  replicas: 2
+  replicas: 1
   template:
     spec:
       containers:
         - name: shoppingo-web
-          image: ghcr.io/igor-siergiej/shoppingo:prod
+          image: 192.168.68.54:31834/shoppingo-web:0.1.1
