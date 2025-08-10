@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: shoppingo-production
 resources:
-  - ../../base
+  - base.yaml
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
 patchesStrategicMerge:
