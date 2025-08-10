@@ -9,6 +9,22 @@ spec:
       containers:
         - name: shoppingo-api
           image: 192.168.68.54:31834/shoppingo-api:0.1.1
+          env:
+            - name: CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret-prod
+                  key: CONNECTION_URI
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret-prod
+                  key: PORT
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret-prod
+                  key: DATABASE_NAME
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,10 +51,10 @@ spec:
             - name: MONGODB_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-secret
+                  name: mongodb-secret-prod
                   key: username
             - name: MONGODB_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-secret
+                  name: mongodb-secret-prod
                   key: password
