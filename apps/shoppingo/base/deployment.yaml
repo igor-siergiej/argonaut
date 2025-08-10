@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shoppingo-api
-          image: 192.168.68.54:31834/shoppingo-shoppingo-api:latest
+          image: 192.168.68.54:31834/shoppingo-api:placeholder
           ports:
             - containerPort: 4001
           envFrom:
