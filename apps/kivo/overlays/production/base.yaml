@@ -1,0 +1,178 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kivo-production
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kivo
+  labels:
+    app: kivo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kivo
+  template:
+    metadata:
+      labels:
+        app: kivo
+    spec:
+      containers:
+        - name: kivo
+          image: 192.168.68.54:31834/kivo:placeholder
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: kivo-config
+          env:
+            - name: PORT
+              value: "3000"
+            - name: CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: CONNECTION_URI
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: DATABASE_NAME
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: JWT_SECRET
+            - name: ACCESS_TOKEN_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: ACCESS_TOKEN_EXPIRY
+            - name: REFRESH_TOKEN_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: REFRESH_TOKEN_EXPIRY
+            - name: SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: SECURE
+            - name: SAME_SITE
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: SAME_SITE
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kivo
+  labels:
+    app: kivo
+spec:
+  selector:
+    app: kivo
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: http
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kivo-ingress
+  labels:
+    app: kivo
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: kivo.imapps.production
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kivo
+                port:
+                  number: 3000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kivo-config
+  labels:
+    app: kivo
+data:
+  NODE_ENV: production
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kivo-mongodb
+  labels:
+    app: kivo-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kivo-mongodb
+  template:
+    metadata:
+      labels:
+        app: kivo-mongodb
+    spec:
+      containers:
+        - name: kivo-mongodb
+          image: mongodb/mongodb-community-server:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret-production
+                  key: username
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret-production
+                  key: password
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: kivo-mongodb-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kivo-mongodb
+  labels:
+    app: kivo-mongodb
+spec:
+  selector:
+    app: kivo-mongodb
+  ports:
+    - port: 27017
+      targetPort: 27017
+      name: mongodb
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kivo-mongodb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
