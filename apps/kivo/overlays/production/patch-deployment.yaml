@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kivo
+spec:
+  template:
+    spec:
+      containers:
+        - name: kivo
+          image: 192.168.68.54:31834/kivo:production
