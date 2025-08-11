@@ -5,3 +5,12 @@ metadata:
 spec:
   rules:
     - host: kivo.imapps.staging
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kivo
+                port:
+                  number: 3000
