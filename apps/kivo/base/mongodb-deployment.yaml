@@ -26,12 +26,12 @@ spec:
             - name: MONGODB_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: kivo-mongodb-secret
+                  name: kivo-mongodb-secret-staging
                   key: username
             - name: MONGODB_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: kivo-mongodb-secret
+                  name: kivo-mongodb-secret-staging
                   key: password
       volumes:
         - name: mongodb-data

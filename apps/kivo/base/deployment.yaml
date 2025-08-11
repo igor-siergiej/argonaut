@@ -28,35 +28,35 @@ spec:
             - name: CONNECTION_URI
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: CONNECTION_URI
             - name: DATABASE_NAME
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: DATABASE_NAME
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: JWT_SECRET
             - name: ACCESS_TOKEN_EXPIRY
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: ACCESS_TOKEN_EXPIRY
             - name: REFRESH_TOKEN_EXPIRY
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: REFRESH_TOKEN_EXPIRY
             - name: SECURE
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: SECURE
             - name: SAME_SITE
               valueFrom:
                 secretKeyRef:
-                  name: kivo-secret
+                  name: kivo-secret-staging
                   key: SAME_SITE
