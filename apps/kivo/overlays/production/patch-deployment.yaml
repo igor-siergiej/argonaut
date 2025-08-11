@@ -8,3 +8,61 @@ spec:
       containers:
         - name: kivo
           image: 192.168.68.54:31834/kivo:0.1.2
+          env:
+            - name: CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: CONNECTION_URI
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: DATABASE_NAME
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: JWT_SECRET
+            - name: ACCESS_TOKEN_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: ACCESS_TOKEN_EXPIRY
+            - name: REFRESH_TOKEN_EXPIRY
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: REFRESH_TOKEN_EXPIRY
+            - name: SECURE
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: SECURE
+            - name: SAME_SITE
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-secret-production
+                  key: SAME_SITE
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kivo-mongodb
+spec:
+  template:
+    spec:
+      containers:
+        - name: kivo-mongodb
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret-production
+                  key: username
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret-production
+                  key: password
