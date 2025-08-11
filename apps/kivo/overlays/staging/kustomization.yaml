@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: kivo-staging
 resources:
   - ../../base
+  - kivo-sealedsecret.yaml
+  - kivo-mongodb-sealedsecret.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml

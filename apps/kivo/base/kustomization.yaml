@@ -6,3 +6,8 @@ resources:
   - service.yaml
   - ingress.yaml
   - configmaps.yaml
+  - kivo-sealedsecret.yaml
+  - mongodb-deployment.yaml
+  - mongodb-service.yaml
+  - mongodb-pvc.yaml
+  - kivo-mongodb-sealedsecret.yaml
