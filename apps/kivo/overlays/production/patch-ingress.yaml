@@ -4,7 +4,7 @@ metadata:
   name: kivo-ingress
 spec:
   rules:
-    - host: kivo.imapps.production
+    - host: kivo.imapps.co.uk
       http:
         paths:
           - path: /
