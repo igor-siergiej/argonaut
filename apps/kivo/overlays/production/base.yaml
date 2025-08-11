@@ -91,7 +91,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: kivo.imapps.production
+    - host: kivo.imapps.co.uk
       http:
         paths:
           - path: /
