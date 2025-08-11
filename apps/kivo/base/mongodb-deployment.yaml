@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kivo-mongodb
+  labels:
+    app: kivo-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kivo-mongodb
+  template:
+    metadata:
+      labels:
+        app: kivo-mongodb
+    spec:
+      containers:
+        - name: kivo-mongodb
+          image: mongodb/mongodb-community-server:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret
+                  key: username
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kivo-mongodb-secret
+                  key: password
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: kivo-mongodb-pvc

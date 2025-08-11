@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kivo-mongodb
+  labels:
+    app: kivo-mongodb
+spec:
+  selector:
+    app: kivo-mongodb
+  ports:
+    - port: 27017
+      targetPort: 27017
+      name: mongodb
+  type: ClusterIP
