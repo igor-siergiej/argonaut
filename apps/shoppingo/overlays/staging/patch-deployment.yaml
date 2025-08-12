@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: shoppingo-web
-          image: 192.168.68.54:31834/shoppingo-web:0.1.5
+          image: 192.168.68.54:31834/shoppingo-web:0.1.6
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,4 +18,4 @@ spec:
     spec:
       containers:
         - name: shoppingo-api
-          image: 192.168.68.54:31834/shoppingo-api:0.1.5
+          image: 192.168.68.54:31834/shoppingo-api:0.1.6
