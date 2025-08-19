@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: shoppingo-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: shoppingo-production-strip-auth@shoppingo-production
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: shoppingo.imapps.co.uk
       http:
         paths:
-          - path: /auth
+          - path: /auth(/|$)(.*)
             pathType: Prefix
             backend:
               service:

@@ -7,13 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
     nginx.ingress.kubernetes.io/cors-expose-headers: "Content-Length,Content-Range"
-    traefik.ingress.kubernetes.io/router.middlewares: shoppingo-staging-strip-auth@shoppingo-staging
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: shoppingo.imapps.staging
       http:
         paths:
-          - path: /auth
+          - path: /auth(/|$)(.*)
             pathType: Prefix
             backend:
               service:
