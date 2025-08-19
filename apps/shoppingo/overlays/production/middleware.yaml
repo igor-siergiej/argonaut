@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: shoppingo-production-strip-auth
+  namespace: shoppingo-production
+spec:
+  stripPrefix:
+    prefixes:
+      - /auth

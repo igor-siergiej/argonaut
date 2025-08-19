@@ -2,11 +2,20 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shoppingo-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: shoppingo-production-strip-auth@shoppingo-production
 spec:
   rules:
     - host: shoppingo.imapps.co.uk
       http:
         paths:
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: kivo.kivo-production.svc.cluster.local
+                port:
+                  number: 3000
           - path: /api
             pathType: Prefix
             backend:
