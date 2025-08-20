@@ -10,6 +10,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/upstream-vhost: $service_name.$namespace.svc.cluster.local
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
   rules:
@@ -30,6 +32,20 @@ spec:
                 name: shoppingo-api
                 port:
                   number: 4001
+          - path: /(.*\.js)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: shoppingo-web
+                port:
+                  number: 80
+          - path: /(.*\.css)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: shoppingo-web
+                port:
+                  number: 80
           - path: /(.*)
             pathType: ImplementationSpecific
             backend:
