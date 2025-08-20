@@ -2,21 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shoppingo-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: shoppingo.imapps.co.uk
       http:
         paths:
-          - path: /auth(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: kivo
-                port:
-                  number: 3000
-                namespace: kivo-production
           - path: /api
             pathType: Prefix
             backend:

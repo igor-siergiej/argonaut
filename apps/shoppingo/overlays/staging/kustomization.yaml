@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: shoppingo-staging
 resources:
   - ../../base
+  - auth-ingress.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml

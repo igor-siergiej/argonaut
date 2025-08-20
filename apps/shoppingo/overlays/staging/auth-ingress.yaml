@@ -1,28 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: shoppingo-ingress
+  name: shoppingo-auth-ingress
   annotations:
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
     nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"
     nginx.ingress.kubernetes.io/cors-expose-headers: "Content-Length,Content-Range"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: shoppingo.imapps.staging
       http:
         paths:
-          - path: /api
+          - path: /auth(/|$)(.*)
             pathType: Prefix
             backend:
               service:
-                name: shoppingo-api
+                name: kivo
                 port:
-                  number: 4001
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: shoppingo-web
-                port:
-                  number: 80
+                  number: 3000
+                namespace: kivo-staging
