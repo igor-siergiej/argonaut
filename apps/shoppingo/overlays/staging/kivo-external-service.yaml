@@ -3,21 +3,12 @@ kind: Service
 metadata:
   name: kivo
   namespace: shoppingo-staging
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: http
+    traefik.ingress.kubernetes.io/service.serversurl: kivo.kivo-staging.svc.cluster.local:3000
 spec:
   type: ClusterIP
   ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
----
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: kivo
-  namespace: shoppingo-staging
-subsets:
-  - addresses:
-      - ip: 10.42.0.108  # kivo pod IP
-    ports:
-      - port: 3000
-        protocol: TCP
