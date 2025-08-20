@@ -5,7 +5,8 @@ metadata:
   labels:
     app: shoppingo
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: shoppingo-staging-strip-auth@kubernetescrd
 spec:
   rules:
     - host: shoppingo.imapps.staging
