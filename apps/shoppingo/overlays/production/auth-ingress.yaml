@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: shoppingo-auth-ingress
+  namespace: shoppingo-production
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
@@ -10,7 +11,7 @@ spec:
       http:
         paths:
           - path: /auth(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: kivo
