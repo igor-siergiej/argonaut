@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/igor-siergiej/argonaut'
+    repoURL: 'https://github.com/igor-siergiej/kivo'
     targetRevision: HEAD
     path: 'apps/kivo/overlays/production'
   destination:

@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/igor-siergiej/argonaut'
+    repoURL: 'https://github.com/igor-siergiej/shoppingo'
     targetRevision: HEAD
     path: 'apps/shoppingo/overlays/production'
   destination:
