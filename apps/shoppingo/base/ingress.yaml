@@ -13,6 +13,13 @@ spec:
     - host: shoppingo.imapps.staging
       http:
         paths:
+          - path: /auth(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: kivo
+                port:
+                  number: 3000
           - path: /api(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
