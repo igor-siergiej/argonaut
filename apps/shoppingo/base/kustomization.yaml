@@ -13,3 +13,4 @@ resources:
   - mongodb-sealedsecret.yaml
   - api-sealedsecret.yaml
   - ingress.yaml
+  - traefik-middleware.yaml
