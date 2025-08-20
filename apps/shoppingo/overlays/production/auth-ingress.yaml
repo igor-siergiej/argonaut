@@ -4,7 +4,8 @@ metadata:
   name: shoppingo-auth-ingress
   namespace: shoppingo-production
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: shoppingo-production-strip-auth@kubernetescrd
 spec:
   rules:
     - host: shoppingo.imapps.co.uk
@@ -17,4 +18,3 @@ spec:
                 name: kivo
                 port:
                   number: 3000
-                namespace: kivo-production

@@ -4,6 +4,8 @@ namespace: shoppingo-staging
 resources:
   - ../../base
   - auth-ingress.yaml
+  - kivo-external-service.yaml
+  - traefik-middleware.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml
   - patch-ingress.yaml
