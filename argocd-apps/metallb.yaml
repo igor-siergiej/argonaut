@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/igor-siergiej/Shoppingo'
+    repoURL: 'https://github.com/igor-siergiej/argonaut'
     targetRevision: HEAD
     path: 'apps/metallb/base'
   destination:
