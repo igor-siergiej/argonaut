@@ -13,9 +13,10 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: kivo.kivo-production.svc.cluster.local
+                name: kivo
                 port:
                   number: 3000
+                namespace: kivo-production
           - path: /api
             pathType: Prefix
             backend:
