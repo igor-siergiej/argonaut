@@ -38,3 +38,8 @@ spec:
                 secretKeyRef:
                   name: api-secret
                   key: DATABASE_NAME
+            - name: AUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  name: api-secret
+                  key: AUTH_URL
