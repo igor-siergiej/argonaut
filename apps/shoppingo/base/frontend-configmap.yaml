@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  labels:
+    app: shoppingo-web
+data:
+  config.json: |
+    {
+      "AUTH_URL": "http://kivo.imapps.staging"
+    }

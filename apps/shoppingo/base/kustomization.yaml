@@ -12,5 +12,5 @@ resources:
   - configmaps.yaml
   - mongodb-sealedsecret.yaml
   - api-sealedsecret.yaml
-  - web-sealedsecret.yaml
+  - frontend-configmap.yaml
   - ingress.yaml
