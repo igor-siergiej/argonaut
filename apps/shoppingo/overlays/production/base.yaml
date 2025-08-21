@@ -188,7 +188,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: shoppingo.imapps.production
+    - host: shoppingo.imapps.co.uk
       http:
         paths:
           - path: /api
