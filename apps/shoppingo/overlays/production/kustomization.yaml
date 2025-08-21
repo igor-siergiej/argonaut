@@ -5,6 +5,7 @@ resources:
   - base.yaml
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
+  - web-sealedsecret.yaml
   - traefik-middleware.yaml
 patchesStrategicMerge:
   - patch-deployment.yaml

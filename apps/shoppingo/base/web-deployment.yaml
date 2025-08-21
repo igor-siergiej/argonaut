@@ -19,3 +19,6 @@ spec:
           image: 192.168.68.54:31834/shoppingo-web:placeholder
           ports:
             - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: web-secret
