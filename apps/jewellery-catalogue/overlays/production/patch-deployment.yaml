@@ -45,6 +45,21 @@ spec:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret-prod
                   key: MINIO_SECRET_KEY
+            - name: MINIO_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_ENDPOINT
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_ACCESS_KEY
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_SECRET_KEY
 ---
 apiVersion: apps/v1
 kind: Deployment

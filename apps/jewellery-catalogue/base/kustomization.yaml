@@ -5,8 +5,6 @@ resources:
   - mongodb-deployment.yaml
   - mongodb-service.yaml
   - mongodb-pvc.yaml
-  - minio-deployment.yaml
-  - minio-service.yaml
   - api-deployment.yaml
   - api-service.yaml
   - web-deployment.yaml
@@ -16,6 +14,5 @@ resources:
   - ingress.yaml
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
-  - minio-sealedsecret.yaml
 
 
