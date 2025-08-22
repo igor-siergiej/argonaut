@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jewellery-catalogue-web
+  labels:
+    app: jewellery-catalogue-web
+spec:
+  selector:
+    app: jewellery-catalogue-web
+  ports:
+    - port: 80
+      targetPort: 80
+      name: web
+  type: ClusterIP
+
+

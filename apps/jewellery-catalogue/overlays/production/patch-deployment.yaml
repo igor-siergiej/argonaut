@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-api
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: jewellery-catalogue-api
+          image: 192.168.68.54:31834/jewellery-catalogue-api:0.0.1
+          env:
+            - name: AUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: AUTH_URL
+            - name: CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: CONNECTION_URI
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: PORT
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: DATABASE_NAME
+            - name: MINIO_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_ENDPOINT
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_ACCESS_KEY
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret-prod
+                  key: MINIO_SECRET_KEY
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-web
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: jewellery-catalogue-web
+          image: 192.168.68.54:31834/jewellery-catalogue-web:0.0.1
+
+

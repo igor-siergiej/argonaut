@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-api
+  labels:
+    app: jewellery-catalogue-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jewellery-catalogue-api
+  template:
+    metadata:
+      labels:
+        app: jewellery-catalogue-api
+    spec:
+      containers:
+        - name: jewellery-catalogue-api
+          image: 192.168.68.54:31834/jewellery-catalogue-api:placeholder
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: jewellery-catalogue-api-config
+          env:
+            - name: CONNECTION_URI
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: CONNECTION_URI
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: PORT
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: DATABASE_NAME
+            - name: MINIO_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: MINIO_ENDPOINT
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: MINIO_ACCESS_KEY
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: MINIO_SECRET_KEY
+            - name: AUTH_URL
+              value: http://kivo.imapps.staging
+
+

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-web
+  labels:
+    app: jewellery-catalogue-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jewellery-catalogue-web
+  template:
+    metadata:
+      labels:
+        app: jewellery-catalogue-web
+    spec:
+      containers:
+        - name: jewellery-catalogue-web
+          image: 192.168.68.54:31834/jewellery-catalogue-web:placeholder
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: jewellery-catalogue-frontend-config
+
+

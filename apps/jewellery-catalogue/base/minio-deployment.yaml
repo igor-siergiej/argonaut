@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-minio
+  labels:
+    app: jewellery-catalogue-minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jewellery-catalogue-minio
+  template:
+    metadata:
+      labels:
+        app: jewellery-catalogue-minio
+    spec:
+      containers:
+        - name: jewellery-catalogue-minio
+          image: minio/minio:RELEASE.2025-04-22T22-12-26Z-cpuv1
+          args: ["server", "--console-address", ":9001", "/data/minio"]
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+          env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-minio-secret
+                  key: rootUser
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-minio-secret
+                  key: rootPassword
+          volumeMounts:
+            - name: minio-data
+              mountPath: /data/minio
+      volumes:
+        - name: minio-data
+          persistentVolumeClaim:
+            claimName: jewellery-catalogue-minio-pvc
+
+

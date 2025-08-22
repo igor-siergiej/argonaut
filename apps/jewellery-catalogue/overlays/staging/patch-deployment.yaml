@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-web
+spec:
+  template:
+    spec:
+      containers:
+        - name: jewellery-catalogue-web
+          image: 192.168.68.54:31834/jewellery-catalogue-web:0.0.1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-api
+spec:
+  template:
+    spec:
+      containers:
+        - name: jewellery-catalogue-api
+          image: 192.168.68.54:31834/jewellery-catalogue-api:0.0.1
+
+

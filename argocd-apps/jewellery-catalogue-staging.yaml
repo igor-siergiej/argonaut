@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jewellery-catalogue-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/igor-siergiej/argonaut'
+    targetRevision: HEAD
+    path: 'apps/jewellery-catalogue/overlays/staging'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: jewellery-catalogue-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+

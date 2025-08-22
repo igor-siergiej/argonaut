@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - mongodb-deployment.yaml
+  - mongodb-service.yaml
+  - mongodb-pvc.yaml
+  - minio-deployment.yaml
+  - minio-service.yaml
+  - api-deployment.yaml
+  - api-service.yaml
+  - web-deployment.yaml
+  - web-service.yaml
+  - configmaps.yaml
+  - frontend-configmap.yaml
+  - ingress.yaml
+  - api-sealedsecret.yaml
+  - mongodb-sealedsecret.yaml
+  - minio-sealedsecret.yaml
+
+
