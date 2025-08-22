@@ -208,7 +208,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: jewellery-catalogue.imapps.co.uk
+    - host: jewellerycatalogue.imapps.co.uk
       http:
         paths:
           - path: /api
