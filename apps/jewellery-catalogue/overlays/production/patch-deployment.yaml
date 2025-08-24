@@ -57,5 +57,26 @@ spec:
       containers:
         - name: jewellery-catalogue-web
           image: 192.168.68.54:31834/jewellery-catalogue-web:0.1.4
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jewellery-catalogue-mongodb
+spec:
+  template:
+    spec:
+      containers:
+        - name: jewellery-catalogue-mongodb
+          env:
+            - name: MONGODB_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-mongodb-secret-prod
+                  key: username
+            - name: MONGODB_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-mongodb-secret-prod
+                  key: password
 
 
