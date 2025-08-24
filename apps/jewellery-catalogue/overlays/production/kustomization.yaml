@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: jewellery-catalogue-production
+namespace: jewellery-catalogue-prod
 resources:
   - base.yaml
   - api-sealedsecret.yaml

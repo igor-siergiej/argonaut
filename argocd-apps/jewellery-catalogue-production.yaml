@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jewellery-catalogue-production
+  name: jewellery-catalogue-prod
   namespace: argocd
 spec:
   project: default
@@ -11,7 +11,7 @@ spec:
     path: 'apps/jewellery-catalogue/overlays/production'
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: jewellery-catalogue-production
+    namespace: jewellery-catalogue-prod
   syncPolicy:
     automated:
       prune: true
