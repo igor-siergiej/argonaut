@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: jewellery-catalogue-api
-          image: 192.168.68.54:31834/jewellery-catalogue-api:0.1.4
+          image: 192.168.68.54:31834/jewellery-catalogue-api:0.1.8
           env:
             - name: AUTH_URL
               valueFrom:
@@ -61,7 +61,7 @@ spec:
     spec:
       containers:
         - name: jewellery-catalogue-web
-          image: 192.168.68.54:31834/jewellery-catalogue-web:0.1.4
+          image: 192.168.68.54:31834/jewellery-catalogue-web:0.1.8
 ---
 apiVersion: apps/v1
 kind: Deployment
