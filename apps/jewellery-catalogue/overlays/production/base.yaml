@@ -109,21 +109,26 @@ spec:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret
                   key: DATABASE_NAME
-            - name: MINIO_ENDPOINT
+            - name: BUCKET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret
-                  key: MINIO_ENDPOINT
-            - name: MINIO_ACCESS_KEY
+                  key: BUCKET_ACCESS_KEY
+            - name: BUCKET_SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret
-                  key: MINIO_ACCESS_KEY
-            - name: MINIO_SECRET_KEY
+                  key: BUCKET_SECRET_KEY
+            - name: BUCKET_NAME
               valueFrom:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret
-                  key: MINIO_SECRET_KEY
+                  key: BUCKET_NAME
+            - name: BUCKET_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: BUCKET_ENDPOINT
             - name: AUTH_URL
               valueFrom:
                 secretKeyRef:

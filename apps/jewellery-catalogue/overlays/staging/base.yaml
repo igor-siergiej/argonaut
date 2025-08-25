@@ -114,6 +114,26 @@ spec:
                 secretKeyRef:
                   name: jewellery-catalogue-api-secret
                   key: AUTH_URL
+            - name: BUCKET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: BUCKET_ACCESS_KEY
+            - name: BUCKET_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: BUCKET_SECRET_KEY
+            - name: BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: BUCKET_NAME
+            - name: BUCKET_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: jewellery-catalogue-api-secret
+                  key: BUCKET_ENDPOINT
 ---
 apiVersion: v1
 kind: Service
