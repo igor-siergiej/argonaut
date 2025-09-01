@@ -3,5 +3,22 @@ kind: Ingress
 metadata:
   name: shoppingo-ingress
 spec:
+  ingressClassName: traefik
   rules:
     - host: shoppingo.imapps.co.uk
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: shoppingo-api
+                port:
+                  number: 4001
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shoppingo-web
+                port:
+                  number: 80
