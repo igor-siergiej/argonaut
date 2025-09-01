@@ -6,12 +6,20 @@ resources:
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
   - patch-namespace.yaml
-  - delete-api-sealedsecret.yaml
-  - delete-mongodb-sealedsecret.yaml
 patches:
   - path: patch-deployment.yaml
   - path: patch-ingress.yaml
   - path: delete-namespace.yaml
   - path: patch-pvc.yaml
-patchesStrategicMerge:
-  - frontend-configmap.yaml
+  - path: delete-api-sealedsecret.yaml
+    target:
+      kind: SealedSecret
+      name: api-secret
+  - path: delete-mongodb-sealedsecret.yaml
+    target:
+      kind: SealedSecret
+      name: mongodb-secret
+  - path: frontend-configmap.yaml
+    target:
+      kind: ConfigMap
+      name: frontend-config
