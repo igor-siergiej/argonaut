@@ -9,6 +9,7 @@ resources:
 patches:
   - path: patch-deployment.yaml
   - path: patch-ingress.yaml
-  - path: frontend-configmap.yaml
   - path: delete-namespace.yaml
   - path: patch-pvc.yaml
+patchesStrategicMerge:
+  - frontend-configmap.yaml
