@@ -6,6 +6,8 @@ resources:
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
   - patch-namespace.yaml
+  - delete-api-sealedsecret.yaml
+  - delete-mongodb-sealedsecret.yaml
 patches:
   - path: patch-deployment.yaml
   - path: patch-ingress.yaml
