@@ -49,6 +49,8 @@ kind: Deployment
 metadata:
   name: shoppingo-mongodb
 spec:
+  strategy:
+    type: Recreate
   template:
     spec:
       containers:

@@ -5,8 +5,10 @@ resources:
   - ../../base
   - api-sealedsecret.yaml
   - mongodb-sealedsecret.yaml
-  - frontend-configmap.yaml
-patchesStrategicMerge:
-  - patch-deployment.yaml
   - patch-namespace.yaml
-  - patch-ingress.yaml
+patches:
+  - path: patch-deployment.yaml
+  - path: patch-ingress.yaml
+  - path: frontend-configmap.yaml
+  - path: delete-namespace.yaml
+  - path: patch-pvc.yaml

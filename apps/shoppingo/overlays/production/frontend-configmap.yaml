@@ -4,6 +4,7 @@ metadata:
   name: frontend-config
   labels:
     app: shoppingo-web
+  namespace: shoppingo-production
 data:
   config.json: |
     {
