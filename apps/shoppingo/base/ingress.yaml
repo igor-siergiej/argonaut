@@ -12,6 +12,13 @@ spec:
     - host: shoppingo.imapps.staging
       http:
         paths:
+          - path: /config.json
+            pathType: Exact
+            backend:
+              service:
+                name: shoppingo-web
+                port:
+                  number: 80
           - path: /api
             pathType: Prefix
             backend:

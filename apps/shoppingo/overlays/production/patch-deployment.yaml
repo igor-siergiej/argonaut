@@ -68,6 +68,16 @@ spec:
       containers:
         - name: shoppingo-web
           image: 192.168.68.54:31834/shoppingo-web:0.2.5
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/config.json
+              subPath: config.json
+              readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: frontend-config
+            defaultMode: 0644
 ---
 apiVersion: apps/v1
 kind: Deployment
